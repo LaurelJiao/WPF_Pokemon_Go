@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pokemon_Go"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="355" Width="525">
+    <Canvas>
+        <Grid x:Name="MainMap" Height="325" Width="517">
+            <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="195,116,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+
+        </Grid>
+        <Grid x:Name="CatchPokemon" Height="325" Width="517">
+            <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="199,227,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+        </Grid>
+        <Grid x:Name="PersonalInformation" Height="325" Width="517">
+        </Grid>
+        <Grid x:Name="Bag" Height="325" Width="517">
+        </Grid>
+        <Grid x:Name="PokemonInformation" Height="325" Width="517">
+        </Grid>
+
+    </Canvas>
 </Window>
