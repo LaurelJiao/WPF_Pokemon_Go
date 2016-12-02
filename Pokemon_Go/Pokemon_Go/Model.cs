@@ -37,13 +37,26 @@ namespace Pokemon_Go
     }
     class Player : IModel
     {
+        public string name {private set; get;}
         public int Level { private set; get; }
         public int Exp_Max { private set;  get; }
         public int Exp { private set; get; }
         public int[,] Position { private set; get; }
-        public Player()
-        {
-            return;
+        private Player(string name){
+            this.name = name;
+        }
+        static private Player instance;
+        static public Player Instance{
+            get{
+                if(instance == null)
+                instance = new Player();
+                return instance;
+            }
+        }
+        public int[,] Move(int[,] Position){
+            int[,] NewPosition;
+            //...
+            return NewPosition;
         }
     }
     class Bag : IModel
