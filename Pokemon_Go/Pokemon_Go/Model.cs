@@ -10,46 +10,79 @@ namespace Pokemon_Go
 
     class Game_Model : IModel
     {
-        private Player Player;
+        public Player Player { private set; get; }
+        public Bag Bag { private set; get; }
+        public List<Pokemon> PokemonsOnMap { private set; get; }
+        public List<PokemonStop> PokemonStops { private set; get; }
+        public Game_Model(int map_long, int map_width, int pokemon_num, int stop_num)
+        {
+            // Randomly generate some pokemons on the map
+            PokemonsOnMap = new List<Pokemon>();
+            PokemonStops = new List<PokemonStop>();
+            Random rnd = new Random();
+
+            if(Player == null)
+            {
+                Player = new Player();
+            }
+            if(Bag == null)
+            {
+                Bag = new Bag();
+            }
+        }
+    }
+    class PokemonStop
+    {
+
     }
     class Player : IModel
     {
-        private Bag Bag;
+        public int Level { private set; get; }
+        public int Exp_Max { private set;  get; }
+        public int Exp { private set; get; }
+        public int[,] Position { private set; get; }
+        public Player()
+        {
+            return;
+        }
     }
     class Bag : IModel
     {
         private List<Pokemon> MyPokemons;
+        public int PokemonBall { private set; get; }
+        public Bag()
+        {
+            if (MyPokemons == null)
+            {
+                MyPokemons = new List<Pokemon>();
+            }
+            else
+            {
+                MyPokemons.Clear();
+            }
+        }
     }
     class Typing_Game : IModel
     {
-
+        public Typing_Game()
+        {
+            
+        }
     }
     class Pokemon : IModel
     {
-        public string name
-        {
-            private set; get;
-        }
+        public string Name {private set; get; }
         // need a field for the image
         private int Hp_Maximum;
-        public int Hp
+        public int Hp { private set; get; }
+        public int Cp { private set; get; }
+        public int Damage { private set; get; }
+        public int[,] Position { private set; get; }
+        public Pokemon(string name)
         {
-            private set; get;
+            this.Name = name;
         }
-        public int Cp
-        {
-            private set; get;
-        }
-        public int Damage 
-        {
-            private set; get;
-        }
-        
-        public Pokemon()
-        {
-
-        }
-
+    
         public void Powerup() { }
         public void Envolved() { }
         public bool Deduct_Health(int deduct_num)
@@ -63,7 +96,7 @@ namespace Pokemon_Go
             }
             return false;
         }
-    }
+
 
     class Battle_Gym : IModel
     {
