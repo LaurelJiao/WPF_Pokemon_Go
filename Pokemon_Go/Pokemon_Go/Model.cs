@@ -6,23 +6,25 @@ using System.Threading.Tasks;
 
 namespace Pokemon_Go
 {
-    class Game_Model
+    public interface IModel { }
+
+    class Game_Model : IModel
     {
         private Player Player;
     }
-    class Player
+    class Player : IModel
     {
         private Bag Bag;
     }
-    class Bag
+    class Bag : IModel
     {
         private List<Pokemon> MyPokemons;
     }
-    class Typing_Game
+    class Typing_Game : IModel
     {
 
     }
-    class Pokemon
+    class Pokemon : IModel
     {
         public string name
         {
@@ -63,7 +65,7 @@ namespace Pokemon_Go
         }
     }
 
-    class Battle_Gym
+    class Battle_Gym : IModel
     {
         public delegate void Callback(Pokemon winner, Pokemon loser);
         private Pokemon My_Battle_Pokemon;

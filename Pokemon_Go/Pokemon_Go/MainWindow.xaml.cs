@@ -18,11 +18,42 @@ namespace Pokemon_Go
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    /// 
+    public interface IView { }
+    public partial class MainWindow : Window, IView
     {
         public MainWindow()
         {
             InitializeComponent();
+            //Initialize with mainmap
+            MainMap.Visibility = Visibility.Visible;
+            CatchPokemon.Visibility = Visibility.Collapsed;
+            PersonalInformation.Visibility = Visibility.Collapsed;
+            Bag.Visibility = Visibility.Collapsed;
+            PokemonInformation.Visibility = Visibility.Collapsed;
+        }
+        private void SwitchPage(Grid Pre, Grid Next)
+        {
+            Pre.Visibility = Visibility.Collapsed;
+            Next.Visibility = Visibility.Visible;
+            Next.BringIntoView();
+        }
+
+
+
+
+
+
+
+        // below code just for test of page switch
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchPage(MainMap,CatchPokemon);
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchPage(CatchPokemon, MainMap);
         }
     }
 }

@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Pokemon_Go
 {
-    class Presenter
+    class GUI_Presenter
     {
+        private readonly IView View;
+        public GUI_Presenter(IView View)
+        {
+            this.View = View;
+        }
     }
 }
