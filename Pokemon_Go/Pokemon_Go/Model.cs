@@ -3,29 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Pokemon_Go
 {
     class Game_Model
     {
-        static Boolean exist = false;
+        public static List<double> Exist_Position = new List<double>();
+        static Boolean Exist = false;
         public Player Player { get; private set; }
+        public List<Pokemon_Stop> Pokemon_Stops { get; private set; }
         public Game_Model()
         {
-            if (!exist)
+            if (!Exist)
             {
                 Player = new Player();
-                exist = true;
+                Exist = true;
+                Pokemon_Stops = new List<Pokemon_Stop>();
+                for(int i=0; i<3; i++)
+                {
+                    Pokemon_Stops.Add(new Pokemon_Stop());
+                }
             }
+        }
+    }
+    class Pokemon_Stop
+    {
+        public double Position { get; private set; }
+        private DispatcherTimer Timer;
+        private int Count;
+        private Boolean Explored;
+        private Random rnd = new Random();
+        public Pokemon_Stop()
+        {
+            Count = 10;
+            Explored = false;
+            double temp = (double)rnd.Next(30,470);
+            while (Game_Model.Exist_Position.Contains(temp)){
+                temp = (double)rnd.Next(30,470);
+            }
+            Position = temp;
+            Game_Model.Exist_Position.Add(Position);
+            Timer = new DispatcherTimer();
+            Timer.Interval = TimeSpan.FromSeconds(1.0);
+            Timer.Tick += Timer_Tick;
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Count--;
+            if(Count == 0)
+            {
+                Explored = false;
+                Timer.Stop();
+            }
+        }
+        public int Explore_Stop()
+        {
+            int num = rnd.Next(1, 3);
+            Count = 10;
+            Timer.Start();
+            Explored = true;
+            return num;
         }
     }
     class Player 
     {
-        private Bag Bag;
-        private double Position;
-        private int Level;
-        private int EXP;
-        private int EXP_Max;
+        public Bag Bag { get; private set; }
+        public double Position { get; private set; }
+        public int Level { get; private set; }
+        public int EXP { get; private set; }
+        public int EXP_Max { get; private set; }
         public Player()
         {
             Bag = new Bag();
@@ -34,10 +81,6 @@ namespace Pokemon_Go
             EXP = 0;
             EXP_Max = 10;
         }
-        public double GetPostion()
-        {
-            return Position;
-        } 
         public void MoveRight(double x, double max)
         {
             if(Position + x <= max)
@@ -63,25 +106,15 @@ namespace Pokemon_Go
     }
     class Pokemon 
     {
-        public string name
-        {
-            private set; get;
-        }
+        public string name { get; private set; }
         // need a field for the image
-        private int Hp_Maximum;
-        public int Hp
-        {
-            private set; get;
-        }
-        public int Cp
-        {
-            private set; get;
-        }
-        public int Damage 
-        {
-            private set; get;
-        }
-        
+        public int Hp_Maximum { get; private set; }
+        public int Hp { get; private set; }
+
+        public int Cp { get; private set; }
+
+        public int Damage { get; private set; }
+
         public Pokemon()
         {
 
@@ -105,8 +138,8 @@ namespace Pokemon_Go
     class Battle_Gym 
     {
         public delegate void Callback(Pokemon winner, Pokemon loser);
-        private Pokemon My_Battle_Pokemon;
-        private Pokemon Enemy_Pokemon;
+        public Pokemon My_Battle_Pokemon { get; private set; }
+        public Pokemon Enemy_Pokemon { get; private set; }
         public Battle_Gym(Pokemon me, Pokemon enemy)
         {
             My_Battle_Pokemon = me;

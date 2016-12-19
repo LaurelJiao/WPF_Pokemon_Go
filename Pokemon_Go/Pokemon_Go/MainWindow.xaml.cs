@@ -21,6 +21,8 @@ namespace Pokemon_Go
     /// 
     public interface IView {
         Canvas IPlayer { set; get; }
+        
+        
     }
     public partial class MainWindow : Window, IView
     {
@@ -30,16 +32,18 @@ namespace Pokemon_Go
             InitializeComponent();
             //Initialize with mainmap
             Grid_Initialize();
-            UserControl_Init();
             Presenter = new GUI_Presenter(this);
             Presenter.Player_Get_Postion();
+            UserControl_Init();
         }
         
         // Interfave Initialize
         public Canvas IPlayer {
-        get { return Player; }
-        set { Player = value; }
+            get { return Player; }
+            set { Player = value; }
         }
+       
+        
        
 
         // Keyboard A/D control moving, only under mainmap useful
@@ -65,6 +69,8 @@ namespace Pokemon_Go
             this.KeyDown += MainWindow_KeyDown;
             Player_Head.MouseLeftButtonUp += Click_On_Player_Head;
             Pokemon_Ball.MouseLeftButtonUp += Click_On_Pokemon_Ball;
+
+            
             //Personnal information
             Back_PersonalInformation.MouseLeftButtonUp += Click_On_BackButton;
             //Bag

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Pokemon_Go
 {
@@ -20,7 +22,7 @@ namespace Pokemon_Go
         // Moving control
         public void Player_Get_Postion()
         {
-            View.IPlayer.SetValue(Canvas.LeftProperty, Game_Model.Player.GetPostion());
+            View.IPlayer.SetValue(Canvas.LeftProperty, Game_Model.Player.Position);
         }
         public void Player_Move_Right(double x, double m)
         {
@@ -32,5 +34,8 @@ namespace Pokemon_Go
             Game_Model.Player.MoveLeft(x, m);
             Player_Get_Postion();
         }
+
+        
     }
 }
+//HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" Margin="475,0,0,0"

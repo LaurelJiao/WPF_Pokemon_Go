@@ -11,7 +11,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="Resources\background_main.png"/>
             </Grid.Background>
-            <Canvas>
+            <Canvas x:Name="Game_Area">
                 <Canvas x:Name="Player" Height="44" Canvas.Left="229" Canvas.Top="157" Width="25">
                     <Canvas.Background>
                         <ImageBrush ImageSource="Resources\player.png"></ImageBrush>
