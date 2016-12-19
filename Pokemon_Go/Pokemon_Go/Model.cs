@@ -6,25 +6,62 @@ using System.Threading.Tasks;
 
 namespace Pokemon_Go
 {
-    public interface IModel { }
-
-    class Game_Model : IModel
+    class Game_Model
     {
-        private Player Player;
+        static Boolean exist = false;
+        public Player Player { get; private set; }
+        public Game_Model()
+        {
+            if (!exist)
+            {
+                Player = new Player();
+                exist = true;
+            }
+        }
     }
-    class Player : IModel
+    class Player 
     {
         private Bag Bag;
+        private double Position;
+        private int Level;
+        private int EXP;
+        private int EXP_Max;
+        public Player()
+        {
+            Bag = new Bag();
+            Position = 0.0;
+            Level = 1;
+            EXP = 0;
+            EXP_Max = 10;
+        }
+        public double GetPostion()
+        {
+            return Position;
+        } 
+        public void MoveRight(double x, double max)
+        {
+            if(Position + x <= max)
+            {
+                Position += x;
+            }
+        }
+        public void MoveLeft(double x, double min)
+        {
+            if(Position - x >= min)
+            {
+                Position -= x;
+            }
+        }
     }
-    class Bag : IModel
+    class Bag 
     {
         private List<Pokemon> MyPokemons;
     }
-    class Typing_Game : IModel
+    class Typing_Game 
     {
 
     }
-    class Pokemon : IModel
+    class Pokemon 
     {
         public string name
         {
@@ -65,7 +102,7 @@ namespace Pokemon_Go
         }
     }
 
-    class Battle_Gym : IModel
+    class Battle_Gym 
     {
         public delegate void Callback(Pokemon winner, Pokemon loser);
         private Pokemon My_Battle_Pokemon;
