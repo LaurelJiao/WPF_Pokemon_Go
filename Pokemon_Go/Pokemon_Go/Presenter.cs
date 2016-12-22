@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,6 +20,33 @@ namespace Pokemon_Go
             Game_Model = new Game_Model();
         }
         
+        // PokemonStops
+        public void Init_PokemonStops(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                this.View.IPokemonStops[i].SetValue(Canvas.LeftProperty, Game_Model.Pokemon_Stops[i].Position);
+            }
+        }
+        public void Explore_PokemonStop(int i)
+        {
+            if (-10.0 <= Game_Model.Player.Position - Game_Model.Pokemon_Stops[i].Position && Game_Model.Player.Position - Game_Model.Pokemon_Stops[i].Position <= 10.0)
+            {
+                if (!Game_Model.Pokemon_Stops[i].Explored)
+                {
+                    Game_Model.Player.Bag.Add_PokemonBalls(Game_Model.Pokemon_Stops[i].Explore_Stop());
+                }
+                else
+                {
+                    MessageBox.Show("Sorry, the stop has already been explored, please wait");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sorry, the stop is to far away from you");
+            }
+        }
+
         // Moving control
         public void Player_Get_Postion()
         {
@@ -38,4 +66,3 @@ namespace Pokemon_Go
         
     }
 }
-//HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" Margin="475,0,0,0"

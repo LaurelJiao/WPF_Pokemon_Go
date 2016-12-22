@@ -19,11 +19,11 @@ namespace Pokemon_Go
             {
                 Player = new Player();
                 Exist = true;
+                // Initialize the pokemonstops
                 Pokemon_Stops = new List<Pokemon_Stop>();
-                for(int i=0; i<3; i++)
-                {
-                    Pokemon_Stops.Add(new Pokemon_Stop());
-                }
+                Pokemon_Stops.Add(new Pokemon_Stop(100.0));
+                Pokemon_Stops.Add(new Pokemon_Stop(250.0));
+                Pokemon_Stops.Add(new Pokemon_Stop(400.0)); 
             }
         }
     }
@@ -32,17 +32,12 @@ namespace Pokemon_Go
         public double Position { get; private set; }
         private DispatcherTimer Timer;
         private int Count;
-        private Boolean Explored;
-        private Random rnd = new Random();
-        public Pokemon_Stop()
+        public bool Explored { get; private set; }
+        public Pokemon_Stop(double position)
         {
             Count = 10;
             Explored = false;
-            double temp = (double)rnd.Next(30,470);
-            while (Game_Model.Exist_Position.Contains(temp)){
-                temp = (double)rnd.Next(30,470);
-            }
-            Position = temp;
+            Position = position;
             Game_Model.Exist_Position.Add(Position);
             Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromSeconds(1.0);
@@ -57,13 +52,14 @@ namespace Pokemon_Go
                 Timer.Stop();
             }
         }
+        private Random rnd = new Random();
         public int Explore_Stop()
         {
-            int num = rnd.Next(1, 3);
-            Count = 10;
-            Timer.Start();
-            Explored = true;
-            return num;
+                int num = rnd.Next(1, 3);
+                Count = 10;
+                Timer.Start();
+                Explored = true;
+                return num;
         }
     }
     class Player 
@@ -98,7 +94,17 @@ namespace Pokemon_Go
     }
     class Bag 
     {
-        private List<Pokemon> MyPokemons;
+        public List<Pokemon> MyPokemons { get; private set; }
+        public int Num_PokemonBalls { get; private set; }
+        public Bag()
+        {
+            Num_PokemonBalls = 0;
+            MyPokemons = new List<Pokemon>();
+        }
+        public void Add_PokemonBalls(int num)
+        {
+            Num_PokemonBalls += num;
+        }
     }
     class Typing_Game 
     {

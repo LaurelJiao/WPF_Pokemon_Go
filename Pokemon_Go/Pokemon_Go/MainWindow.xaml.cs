@@ -21,12 +21,13 @@ namespace Pokemon_Go
     /// 
     public interface IView {
         Canvas IPlayer { set; get; }
-        
+        List<Canvas> IPokemonStops { set; get; }
         
     }
     public partial class MainWindow : Window, IView
     {
         private GUI_Presenter Presenter;
+        private List<Canvas> PokemonStops = new List<Canvas>();
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +43,11 @@ namespace Pokemon_Go
             get { return Player; }
             set { Player = value; }
         }
-       
+        public List<Canvas> IPokemonStops
+        {
+            get { return PokemonStops; }
+            set { PokemonStops = value; }
+        }
         
        
 
@@ -61,15 +66,28 @@ namespace Pokemon_Go
                 }
             }
         }
+        // Mouse Click on the PokemonStops
+        private void PokemonStop_MouseClick(object sender, MouseEventArgs e)
+        {
+            Canvas c = sender as Canvas;
+            Presenter.Explore_PokemonStop(PokemonStops.IndexOf(c));
+        }
 
         //Initializing 
         private void UserControl_Init()
         {
             //Mainmap control
+                //Movement
             this.KeyDown += MainWindow_KeyDown;
             Player_Head.MouseLeftButtonUp += Click_On_Player_Head;
             Pokemon_Ball.MouseLeftButtonUp += Click_On_Pokemon_Ball;
-
+            //PokemonStops
+            PokemonStops.Add(Stop1); PokemonStops.Add(Stop2); PokemonStops.Add(Stop3);
+            Presenter.Init_PokemonStops(PokemonStops.Count);
+            foreach(Canvas c in PokemonStops)
+            {
+                c.MouseLeftButtonUp += PokemonStop_MouseClick;
+            }
             
             //Personnal information
             Back_PersonalInformation.MouseLeftButtonUp += Click_On_BackButton;

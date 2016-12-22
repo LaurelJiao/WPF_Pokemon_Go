@@ -17,6 +17,21 @@
                         <ImageBrush ImageSource="Resources\player.png"></ImageBrush>
                     </Canvas.Background>
                 </Canvas>
+                <Canvas x:Name="Stop1" Height="44" Canvas.Top="157" Width="25">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\PokemonStop.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <Canvas x:Name="Stop2" Height="44" Canvas.Top="157" Width="25">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\PokemonStop.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <Canvas x:Name="Stop3" Height="44" Canvas.Top="157" Width="25">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\PokemonStop.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
             </Canvas>
             <Canvas x:Name="Player_Head" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" Margin="475,0,0,0">
                 <Canvas.Background>
@@ -28,6 +43,7 @@
                     <ImageBrush ImageSource="Resources/Poke_Ball.png"/>
                 </Canvas.Background>
             </Canvas>
+
         </Grid>
         <Grid x:Name="CatchPokemon" Height="325" Width="517">
         </Grid>
