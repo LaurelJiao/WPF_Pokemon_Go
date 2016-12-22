@@ -12,6 +12,36 @@
                 <ImageBrush ImageSource="Resources\background_main.png"/>
             </Grid.Background>
             <Canvas x:Name="Game_Area">
+                <Canvas x:Name="Pichu" Height="20" Canvas.Left="84" Canvas.Top="181" Width="36">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\pichu.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <Canvas x:Name="Squirtle" Height="20" Canvas.Left="374" Canvas.Top="181" Width="36">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\squirtle.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <Canvas x:Name="Charmander" Height="20" Canvas.Left="333" Canvas.Top="181" Width="36">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\charmander.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <Canvas x:Name="Wartortle" Height="20" Canvas.Left="151" Canvas.Top="181" Width="36">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\wartortle.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <Canvas x:Name="Pikachu" Height="20" Canvas.Left="448" Canvas.Top="181" Width="36" >
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\pikachu.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <Canvas x:Name="Charmeleon" Height="20" Canvas.Left="23" Canvas.Top="181" Width="36" >
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\charmeleon.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
                 <Canvas x:Name="Player" Height="44" Canvas.Left="229" Canvas.Top="157" Width="25">
                     <Canvas.Background>
                         <ImageBrush ImageSource="Resources\player.png"></ImageBrush>
@@ -32,6 +62,11 @@
                         <ImageBrush ImageSource="Resources\PokemonStop.png"></ImageBrush>
                     </Canvas.Background>
                 </Canvas>
+                <Canvas x:Name="Gym" Height="82" Canvas.Top="119" Width="44">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources\gym.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
             </Canvas>
             <Canvas x:Name="Player_Head" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" Margin="475,0,0,0">
                 <Canvas.Background>
@@ -46,8 +81,23 @@
 
         </Grid>
         <Grid x:Name="CatchPokemon" Height="325" Width="517">
+            <Canvas x:Name="Typing_Game"  HorizontalAlignment="Left" Height="264" Margin="17,34,0,0" VerticalAlignment="Top" Width="372">
+                <TextBlock x:Name="Type_Block" Canvas.Left="82" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="35"/>
+            </Canvas>
+            <TextBox x:Name="Typing_Area" HorizontalAlignment="Left" Height="25" Margin="406,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
         </Grid>
         <Grid x:Name="PersonalInformation" Height="325" Width="517">
+            <Canvas x:Name="PersonalInformation_Area" Height="325" Width="517">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Resources\personal_information_background.png"></ImageBrush>
+                </Canvas.Background>
+                <TextBlock x:Name="Level_Name" Height="28" Canvas.Left="34" TextWrapping="Wrap" Text="Level" Canvas.Top="23" Width="45"/>
+                <TextBlock x:Name="Exp_Name" Canvas.Left="34" TextWrapping="Wrap" Text="EXP" Canvas.Top="94"/>
+                <TextBlock x:Name="Level_Num" Canvas.Left="84" TextWrapping="Wrap" Text="1" Canvas.Top="23"/>
+                <TextBlock x:Name="Exp_Current" Canvas.Left="85" TextWrapping="Wrap" Text="100" Canvas.Top="94"/>
+                <TextBlock x:Name="Exp_Separate" Canvas.Left="109" TextWrapping="Wrap" Text="/" Canvas.Top="94"/>
+                <TextBlock x:Name="Exp_Maximum" Canvas.Left="119" TextWrapping="Wrap" Text="100" Canvas.Top="94"/>
+            </Canvas>
             <Canvas x:Name="Back_PersonalInformation" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" Margin="475,0,0,0">
                 <Canvas.Background>
                     <ImageBrush ImageSource="Resources/back_icon.png"/>
@@ -56,14 +106,45 @@
 
         </Grid>
         <Grid x:Name="Bag" Height="325" Width="517">
-            <Canvas x:Name="Back_Bag" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" Margin="475,0,0,0">
+            <Canvas x:Name="Back_Bag" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" RenderTransformOrigin="14.877,0.921" Margin="475,0,0,0">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Resources/back_icon.png"/>
+                </Canvas.Background>
+            </Canvas>
+            <Canvas x:Name="Bag_Area" Height="325" Width="517">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Resources/bag_background.png"></ImageBrush>
+                </Canvas.Background>
+                <Canvas Height="32" Canvas.Left="10" Width="33">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Resources/Poke_Ball.png"></ImageBrush>
+                    </Canvas.Background>
+                </Canvas>
+                <TextBlock x:Name="Ball_Num" Canvas.Left="43" TextWrapping="Wrap" Text="" Canvas.Top="10" Width="37" Height="22"/>
+                <Canvas x:Name="Bag_Pokemon_Area" Height="270" Canvas.Left="10" Canvas.Top="45" Width="497">
+                    <Canvas Height="80" Width="80"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="80"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="160"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="240"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="320"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="400"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="80"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="160" Canvas.Top="80"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="240" Canvas.Top="80"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="320" Canvas.Top="80"/>
+                    <Canvas Height="80" Width="80" Canvas.Left="400" Canvas.Top="80"/>
+                </Canvas>
+            </Canvas>
+        </Grid>
+        <Grid x:Name="PokemonInformation" Height="325" Width="517">
+            <Canvas x:Name="Back_PokemonInformation" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" RenderTransformOrigin="14.877,0.921" Margin="475,0,0,0">
                 <Canvas.Background>
                     <ImageBrush ImageSource="Resources/back_icon.png"/>
                 </Canvas.Background>
             </Canvas>
         </Grid>
-        <Grid x:Name="PokemonInformation" Height="325" Width="517">
-            <Canvas x:Name="Back_PokemonInformation" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" RenderTransformOrigin="14.877,0.921" Margin="475,0,0,0">
+        <Grid x:Name="Gym_Battle" Height="325" Width="517">
+            <Canvas x:Name="Back_Gym" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="32" RenderTransformOrigin="14.877,0.921" Margin="475,0,0,0">
                 <Canvas.Background>
                     <ImageBrush ImageSource="Resources/back_icon.png"/>
                 </Canvas.Background>

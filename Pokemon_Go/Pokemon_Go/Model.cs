@@ -13,6 +13,8 @@ namespace Pokemon_Go
         static Boolean Exist = false;
         public Player Player { get; private set; }
         public List<Pokemon_Stop> Pokemon_Stops { get; private set; }
+        public Gym Gym { get; private set; }
+        public List<Pokemon> Pokemons { get; private set; }
         public Game_Model()
         {
             if (!Exist)
@@ -23,7 +25,24 @@ namespace Pokemon_Go
                 Pokemon_Stops = new List<Pokemon_Stop>();
                 Pokemon_Stops.Add(new Pokemon_Stop(100.0));
                 Pokemon_Stops.Add(new Pokemon_Stop(250.0));
-                Pokemon_Stops.Add(new Pokemon_Stop(400.0)); 
+                Pokemon_Stops.Add(new Pokemon_Stop(400.0));
+                // Initialize the gym
+                Gym = new Gym(150.0);
+                //Initialize the pokemons
+                Pokemons = new List<Pokemon>();
+                Pokemon Pichu = new Pokemon("Pichu", 84);
+                Pokemon Pikachu = new Pokemon("Pikachu", 448);
+                Pokemon Charmander = new Pokemon("Charmander", 333);
+                Pokemon Squirtle = new Pokemon("Squirtle", 374);
+                Pokemon Wartortle = new Pokemon("Wartortle", 124);
+                Pokemon Charmeleon = new Pokemon("Charmeleon", 23);
+                Pokemons.Add(Pichu);
+                Pokemons.Add(Pikachu);
+                Pokemons.Add(Charmander);
+                Pokemons.Add(Squirtle);
+                Pokemons.Add(Wartortle);
+                Pokemons.Add(Charmeleon);
+
             }
         }
     }
@@ -106,28 +125,58 @@ namespace Pokemon_Go
             Num_PokemonBalls += num;
         }
     }
-    class Typing_Game 
-    {
-
-    }
+    
     class Pokemon 
     {
+        public double Position { get; private set; }
         public string name { get; private set; }
+        public string type { get; private set; }
         // need a field for the image
         public int Hp_Maximum { get; private set; }
         public int Hp { get; private set; }
-
         public int Cp { get; private set; }
-
         public int Damage { get; private set; }
-
-        public Pokemon()
+        public string skill;
+        private Random rnd = new Random();
+        public Pokemon(string type, double Position)
         {
+            this.name = type;
+            this.type = type;
+            this.Position = Position;
+            Hp = rnd.Next(80);
+            Cp = rnd.Next(70);
+        }
+        public Pokemon(string type)
+        {
+            this.name = type;
+            this.type = type;
+            Hp = rnd.Next(80);
+            Cp = rnd.Next(70);
+        }
+        public void Powerup()
+        {
+            int add = rnd.Next(40);
+            if (Hp != Hp_Maximum)
+            {
+                Hp = Hp + add;
+            }
+            add = rnd.Next(70);
+            Cp = Cp + add;
+        }
+        public void Envolved(string newtype, string newskill)
+        {
+            type = newtype;
+            int newadd = rnd.Next(80);
+            Hp = Hp + newadd;
+            newadd = rnd.Next(90);
+            Cp = Cp + newadd;
+            skill = newskill;
 
         }
-
-        public void Powerup() { }
-        public void Envolved() { }
+        public void Setname(string uname)
+        {
+            name = uname;
+        }
         public bool Deduct_Health(int deduct_num)
         {
             // Deduct the health, after the operation, return true is Hp <= 0
@@ -141,6 +190,14 @@ namespace Pokemon_Go
         }
     }
 
+    class Gym
+    {
+        public double Position { get; private set; }
+        public Gym(double positon)
+        {
+            Position = positon;
+        }
+    }
     class Battle_Gym 
     {
         public delegate void Callback(Pokemon winner, Pokemon loser);
@@ -158,6 +215,49 @@ namespace Pokemon_Go
             {
                 callback(src, target);
             }
+        }
+    }
+
+    class Typing_Game
+    {
+        public Pokemon pokemon { get; private set; }
+        private DispatcherTimer Timer;
+        public int count {get; private set;}
+        public Typing_Game(Pokemon pokemon)
+        {
+            if(Timer != null)
+            {
+                Timer = null;
+                Timer = new DispatcherTimer();
+                Timer.Interval = TimeSpan.FromSeconds(1);
+                Timer.Tick += Tick;
+                Timer.Start();
+                return;
+            }
+            this.pokemon = pokemon;
+            Timer = new DispatcherTimer();
+            Timer.Interval = TimeSpan.FromSeconds(1);
+            Timer.Tick += Tick;
+            count = 5;
+            Timer.Start();
+        }
+        private void Tick(object sender,EventArgs e)
+        {
+            count--;
+            if(count == 0)
+            {
+                count = 5;
+                Timer.Stop();
+                Fail_Catch();
+            }
+        }
+        public void Success_Catch()
+        {
+            
+        }
+        public void Fail_Catch()
+        {
+
         }
     }
 }

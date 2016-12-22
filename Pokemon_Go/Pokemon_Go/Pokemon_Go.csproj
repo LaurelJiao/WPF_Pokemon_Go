@@ -115,6 +115,23 @@
   <ItemGroup>
     <Resource Include="Resources\PokemonStop.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\personal_information_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gym.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bag_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\charmander.png" />
+    <Resource Include="Resources\charmeleon.png" />
+    <Resource Include="Resources\pichu.png" />
+    <Resource Include="Resources\pikachu.png" />
+    <Resource Include="Resources\squirtle.png" />
+    <Resource Include="Resources\wartortle.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
